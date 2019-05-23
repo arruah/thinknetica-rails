@@ -17,10 +17,9 @@ puts "Enter the third coefficient (c)"
 c = gets.chomp.to_f
 
 d = b**2 - (4 * a * c)
-
 if d < 0
   puts "The equation have no roots, discriminant is #{d}"
-  elsif d == 0
+elsif d == 0
   x1 = -b/2 * a
   puts "The equation have one root #{x1}, discriminant is #{d}"
 else

@@ -8,13 +8,13 @@ compare its value in the square with the sum of the squares of the other two sid
 triangle isosceles and equilateral, but not rectangular.
 =end
 puts "Enter the First side of the triangle"
-first = gets.chomp
+first = gets.chomp.to_f
 puts "Enter the Second side iof the triangle"
-second = gets.chomp
+second = gets.chomp.to_f
 puts "Enter the Third side of the triangle"
-third = gets.chomp
+third = gets.chomp.to_f
 
-a, b, c = [first.to_f, second.to_f, third.to_f].sort
+a, b, c = [first, second, third.sort
 
 if a == b && a == c
   puts "The triangle isosceles and equilateral, but not rectangular"
@@ -23,7 +23,8 @@ end
 
 if c**2 == a**2 + b**2
   print "The triangle is Right"
-  else print "The triangle is not Right"
+else
+  print "The triangle is not Right"
 end
 
 if a == b
