@@ -10,12 +10,13 @@ system "clear"
   price = gets.chomp.to_f
   puts "Enter the item quantity: "
   quantity = gets.chomp.to_f
-products[name] = { a:price, b: quantity}
+
+products[name] = { price: price, quantity: quantity}
 end
 
 system "clear"
 products.each do |name, price_quantity|
-  sum = price_quantity[:a] * price_quantity[:b]
+  sum = price_quantity[:price] * price_quantity[:quantity]
   print name + '  ' + price_quantity[:a].to_s + ' ' + price_quantity[:b].to_s + ' Sum: ' + sum.to_s
   puts
   basket_sum += sum
