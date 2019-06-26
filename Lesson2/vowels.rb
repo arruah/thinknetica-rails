@@ -6,9 +6,8 @@ abc = ('a'..'z')
 LETTERS = %w[a e i o u].freeze
 vowels = {}
 
-
-abc.each_with_index do |letter, index|
-  vowels[letter] = index + 1 if LETTERS.include?(letter)
+abc.each.with_index(1) do |letter, index|
+  vowels[letter] = index if LETTERS.include?(letter)
 end
 
-print vowels.to_s
+p vowels.to_s

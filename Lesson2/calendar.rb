@@ -8,11 +8,10 @@ Algorithm for determining a leap year: www.adm.yar.ru
 
 last_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
-puts "Enter the date in this format: DD.MM.YYYY"
+puts 'Enter the date in this format: DD.MM.YYYY'
 day, month, year = gets.chomp.split('.').map(&:to_i)
 
-days_sum = last_days.take(month-1).sum + day
-leap = ((year % 4 ==  0 and year % 100 != 0 ) || (year % 400 == 0))
+days_sum = last_days.take(month - 1).sum + day
+leap = (((year % 4).zero? && year % 100 != 0) || (year % 400).zero?)
 last_days[1] = 29 if leap
-puts "Number of days from the beginning of the #{"leap" if leap}year - #{days_sum}"
-
+p "Number of days from the beginning of the #{'leap' if leap}year - #{days_sum}"
