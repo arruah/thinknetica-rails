@@ -8,11 +8,11 @@ class Train
     end
 
   def speed_up
-  @speed + 5
+    @speed += 5
   end
 
   def speed_down
-    @speed - 5
+    @speed -= 5 if @speed >= 5
   end
 
   def stop
