@@ -20,11 +20,11 @@ class Train
   end
 
   def add_wagon
-    @wagon_count + 1 if @speed == 0
+    @wagon_count + 1 if @speed.positive?
   end
 
   def delete_wagon
-    @wagon_count - 1 if @wagon_count > 0 && @speed == 1
+    @wagon_count - 1 if @wagon_count.positive? && @speed.zero?
   end
 
   def take_route(route)
@@ -45,6 +45,6 @@ class Train
   end
 
   def previous_station
-    @route[@route.index(@station) - 1] if @route.index(@station) - 1 > 0
+    @route[@route.index(@station) - 1] if (@route.index(@station) - 1).positive?
   end
 end
