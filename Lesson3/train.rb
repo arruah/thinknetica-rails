@@ -5,7 +5,7 @@ class Train
     @type = type
     @wagon_count = wagon_count
     @speed = 0
-    end
+  end
 
   def speed_up
     @speed += 5
@@ -24,7 +24,7 @@ class Train
   end
 
   def delete_wagon
-    @wagon_count - 1 if @wagon_count.positive? && @speed.zero?
+    @wagon_count - 1 if @wagon_count.zero? && @speed.zero?
   end
 
   def take_route(route)
