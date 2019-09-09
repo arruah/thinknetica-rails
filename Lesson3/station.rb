@@ -7,14 +7,16 @@ class Station
   end
 
   def arrival(train)
-    @trains.push(train)
+    @trains << train
+    p "Train #{train.number} arrived"
   end
 
-  def departure(number)
-    @trains.delete(number)
+  def departure(train)
+    @trains.delete(train)
+    p "Train #{train.number} departured"
   end
 
-  def type(type)
+  def show_type_of_train(type)
     @trains.select { |train| train.type == type }
   end
 end

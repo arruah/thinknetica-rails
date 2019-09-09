@@ -5,6 +5,7 @@ class Train
     @type = type
     @wagon_count = wagon_count
     @speed = 0
+    @station_index = 0
   end
 
   def speed_up
@@ -28,8 +29,13 @@ class Train
   end
 
   def take_route(route)
-    @route = route.stations
-    @station = route.stations.first
+    @station_index = 0
+    @route = route
+    @route.stations[@station_index].arrival(self)
+  end
+
+  def show_current_station
+    @route.stations[@station_index].name
   end
 
   def move_forward
@@ -41,10 +47,14 @@ class Train
   end
 
   def next_station
-    @route[@route.index(@station) + 1] if @route.index(@station) - 1 < @route.size
+    @route.stations[@station_index].departure(self)
+    @station_index += 1
+    @route.stations[@station_index].arrival(self)
   end
 
   def previous_station
-    @route[@route.index(@station) - 1] if (@route.index(@station) - 1).positive?
+    @route.stations[@station_index].departure(self)
+    @station_index -= 1
+    @route.stations[@station_index].arrival(self)
   end
 end
