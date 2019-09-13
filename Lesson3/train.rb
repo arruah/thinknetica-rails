@@ -39,22 +39,22 @@ class Train
   end
 
   def move_forward
-    @station = next_station if next_station
-  end
-
-  def move_backward
-    @station = previous_station if previous_station
-  end
-
-  def next_station
     @route.stations[@station_index].departure(self)
     @station_index += 1
     @route.stations[@station_index].arrival(self)
   end
 
-  def previous_station
+  def move_backward
     @route.stations[@station_index].departure(self)
     @station_index -= 1
     @route.stations[@station_index].arrival(self)
+  end
+
+  def next_station
+    @route.stations[@station_index + 1]
+  end
+
+  def previous_station
+    @route.stations[@station_index - 1]
   end
 end
