@@ -10,6 +10,6 @@ class Route
   end
 
   def remove(station)
-    station.remove(station)
+    station.delete(station)
   end
 end
