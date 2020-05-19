@@ -1,3 +1,3 @@
-class Wagon
+class Vagon
   include ManufacturerName
 end

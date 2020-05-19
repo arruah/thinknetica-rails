@@ -1,28 +1,30 @@
 class Station
   include InstanceCounter
-
-  attr_reader :trains, :name
+  
+  attr_reader :trains, :title
 
   @@stations = []
 
-  def initialize(name)
-    @name = name
+  def self.all
+    @@stations  
+  end
+
+  def initialize(title)
+    @title = title
     @trains = []
     @@stations << self
     register_instance
   end
 
-  def arrival(train)
+  def take_the_train(train)
     @trains << train
-    p "Train #{train.number} arrived"
   end
 
-  def departure(train)
+  def departure_train(train)
     @trains.delete(train)
-    p "Train #{train.number} departured"
   end
 
-  def show_type_of_train(type)
-    @trains.select { |train| train.type == type }
+  def show_type_of_trains(type)
+    @trains.count { |train| train.type == type}
   end
 end

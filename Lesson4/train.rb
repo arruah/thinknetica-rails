@@ -1,66 +1,72 @@
 class Train
   include ManufacturerName
   include InstanceCounter
-  attr_reader :speed, :wagons, :type, :station, :number
 
-  def initialize(number, type)
-    @number = number
+  attr_reader :name, :type, :speed, :vagons, :route
+
+  @@trains = Hash.new
+
+  def self.find(name)
+    @@trains[name]
+  end
+
+  def initialize(name, type)
+    @name = name
+    @vagons = []
     @type = type
-    @wagons = []
     @speed = 0
     @station_index = 0
-    @@trains.store(numer, self)
+    @@trains.store(name, self)
     register_instance
-  end
-
-  def speed_up
-    @speed += 5
-  end
-
-  def speed_down
-    @speed -= 5 if @speed >= 5
-  end
-
-  def stop
-    @speed = 0
-  end
-
-  def add_wagon(wagon)
-    @wagons << wagon if @speed == 0
-  end
-
-  def delete_wagon
-    @wagons.pop if @speed == 0
   end
 
   def take_route(route)
     @station_index = 0
     @route = route
-    @route.stations[@station_index].arrival(self)
+    @route.stations[@station_index].take_the_train(self)
+  end
+
+  def increase_speed
+    @speed += 20
+  end
+
+  def slow_down
+    @speed = 0
+  end
+
+  def hook_vagon(vagon)
+    @vagons << vagon if @speed == 0
+  end
+
+  def unhook_vagon
+    @vagons.pop if @speed == 0
+  end
+
+  def show_previous_station
+    @route.stations[@station_index - 1]
   end
 
   def show_current_station
-    @route.stations[@station_index].name
-  end
-
-  def show_next_station
     @route.stations[@station_index]
   end
 
-  def move_forward
+  def show_next_station
+    @route.stations[@station_index + 1]
+  end
+
+  def go_next_station
     if show_current_station != @route.stations.last
-    @route.stations[@station_index].departure(self)
-    @station_index += 1
-    @route.stations[@station_index].arrival(self)
+      show_current_station.departure_train(self)
+      @station_index += 1
+      show_current_station.take_the_train(self)
     end
   end
 
-  def move_backward
-    if show_current_station != @route.stations.last
-    @route.stations[@station_index].departure(self)
-    @station_index -= 1
-    @route.stations[@station_index].arrival(self)
+  def go_previous_station
+    if show_current_station != @route.stations.first
+      show_current_station.departure_train(self)
+      @station_index -= 1
+      show_current_station.take_the_train(self)
     end
   end
-
 end
