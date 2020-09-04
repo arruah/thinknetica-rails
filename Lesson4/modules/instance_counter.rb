@@ -4,9 +4,8 @@ module InstanceCounter
     base.send :include, InstanceMethods
   end
 
- 
   module ClassMethods
-    attr_writer :instances 
+    attr_writer :instances
 
     def instances
       @instances ||= 0
